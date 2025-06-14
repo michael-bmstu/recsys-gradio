@@ -1,0 +1,6 @@
+app_venv
+__pycache__
+.git
+.gitignore
+.dvc
+.dvcignore

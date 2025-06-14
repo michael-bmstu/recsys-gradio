@@ -31,3 +31,6 @@ dvc repro
 fastapi run main.py --host localhost --port 8000
 ```
 Open your web browser and go to `http://localhost:8000`
+
+### Docker container
+/.../
