@@ -1,0 +1,5 @@
+outs:
+- md5: 2b9389527142c019fca145da56f4cfc7
+  size: 4560821
+  hash: md5
+  path: anime_train.csv

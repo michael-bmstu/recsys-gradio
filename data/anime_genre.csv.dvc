@@ -1,0 +1,5 @@
+outs:
+- md5: 9b8a5aa91ba4ea779b50684f61820e1a
+  size: 1077454
+  hash: md5
+  path: anime_genre.csv

@@ -1,0 +1,5 @@
+outs:
+- md5: f5f13ce8a77e8b2c8d647d3616f197f4
+  size: 885595
+  hash: md5
+  path: anime_clean.csv
