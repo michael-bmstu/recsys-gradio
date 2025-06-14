@@ -21,4 +21,4 @@ async def root():
     logger.info('Visiting the home page')
     return RedirectResponse(url="/gradio")
     
-app_api = gr.mount_gradio_app(app_api, app_interface, path="/gradio")
+app_api = gr.mount_gradio_app(app_api, app_interface, path="/gradio", pwa=True)
