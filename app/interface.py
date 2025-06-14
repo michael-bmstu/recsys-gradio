@@ -8,13 +8,13 @@ logger = setup_logger()
 # загрузка файлов и весов
 try:
     anime_clean, anime_genre, anime_train, kmeans, scaler = utils.read_prepare()
-    logger.info('Данные успешно прочитаны')
+    logger.info('data read successfully')
 except:
-    logger.info('Подготовленных данных не обнаружено')
-    logger.info('Запуск предобработки данных и обучения модели')
+    logger.info('no prepared data found')
+    logger.info('launch data preprocessing and model training')
     utils.first_run()
     anime_clean, anime_genre, anime_train, kmeans, scaler = utils.read_prepare()
-    logger.info('Данные успешно прочитаны')
+    logger.info('data read successfully')
 
 genres = list(anime_genre.columns)
 mean_rating = anime_train[genres].mean()
@@ -31,6 +31,7 @@ def dynamic_change(selected_r1, selected_r2, selected_r3):
     new_r2_choices = [genre for genre in genres if genre not in selected_genres or genre in selected_r2]
     new_r3_choices = [genre for genre in genres if genre not in selected_genres or genre in selected_r3]
 
+    logger.info('genre is rated')
     return gr.update(choices=new_r1_choices), gr.update(choices=new_r2_choices), gr.update(choices=new_r3_choices)
 
 def recomend(r1, r2, r3, hist, slider):
@@ -49,6 +50,8 @@ def recomend(r1, r2, r3, hist, slider):
         else:
             sample.append(mean_r)
 
+    logger.info('ratings are processed')
+
     sample = np.array(sample).reshape(1, -1)
     sample_scaled = scaler.transform(sample)
     label = kmeans.predict(sample_scaled)[0]
@@ -59,12 +62,13 @@ def recomend(r1, r2, r3, hist, slider):
         cluster, anime_genre[~anime_genre.index.isin(hist_id)], genres
         )
     anime_top = anime_clean.loc[anime_id].iloc[:top_n]
+    logger.info('the recommendation is ready')
     recs = anime_top[['name', 'rating']].to_html(index=False)
-    text = "## The best anime for you"
+    text = '## The best anime for you'
     return text, recs
 
 def create_interface():
-    app_interface = gr.Blocks(title="Rating anime genres")
+    app_interface = gr.Blocks(title='Rating anime genres')
     with app_interface:
         r1 = gr.Dropdown(choices=genres, label='good', multiselect=True)
         r2 = gr.Dropdown(choices=genres, label='normal', multiselect=True)
@@ -75,7 +79,7 @@ def create_interface():
 
         hist = gr.Dropdown(choices=list(anime_clean['name']), label='View history', multiselect=True)
 
-        slider = gr.Slider(minimum=1, maximum=15, value=5, step=1, label="Select count of recomendations")
+        slider = gr.Slider(minimum=1, maximum=15, value=5, step=1, label='Select count of recomendations')
 
         btn = gr.Button('recommend')
         label = gr.Markdown()

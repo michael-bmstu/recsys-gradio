@@ -18,7 +18,7 @@ app_interface = interface.create_interface()
 
 @app_api.get('/')
 async def root():
-    logger.info('Visiting the home page')
-    return RedirectResponse(url="/gradio")
+    logger.info('visiting the home page')
+    return RedirectResponse(url='/gradio')
     
-app_api = gr.mount_gradio_app(app_api, app_interface, path="/gradio", pwa=True)
+app_api = gr.mount_gradio_app(app_api, app_interface, path='/gradio', pwa=True)
