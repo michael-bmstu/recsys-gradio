@@ -33,10 +33,11 @@ def dynamic_change(selected_r1, selected_r2, selected_r3):
 
     return gr.update(choices=new_r1_choices), gr.update(choices=new_r2_choices), gr.update(choices=new_r3_choices)
 
-def recomend(r1, r2, r3, top_n: int = 5):
+def recomend(r1, r2, r3, slider):
     good = set(r1)
     normal = set(r2)
     bad = set(r3)
+    top_n = int(slider)
     sample = []
     for g, mean_r in zip(genres, mean_rating):
         if g in good:
@@ -57,7 +58,6 @@ def recomend(r1, r2, r3, top_n: int = 5):
     anime_top = anime_clean.loc[anime_id].sort_values(by='rating', ascending=False)[:top_n]
     return anime_top[['name', 'rating']].to_html(index=False)
 
-
 def create_interface():
     app_interface = gr.Blocks(title="Rating anime genres")
     with app_interface:
@@ -68,8 +68,10 @@ def create_interface():
         r2.change(fn=dynamic_change, inputs=[r1, r2, r3], outputs=[r1, r2, r3])
         r3.change(fn=dynamic_change, inputs=[r1, r2, r3], outputs=[r1, r2, r3])
 
+        slider = gr.Slider(minimum=1, maximum=15, value=5, step=1, label="Select count of recomendations")
+
         btn = gr.Button('recommend')
         # output = gr.Textbox()
         output = gr.HTML()
-        btn.click(recomend, inputs=[r1, r2, r3], outputs=output)
+        btn.click(recomend, inputs=[r1, r2, r3, slider], outputs=output)
     return app_interface
