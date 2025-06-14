@@ -80,8 +80,7 @@ def agg_anime(is_save: bool = True) -> pd.DataFrame:
 
     df_agg = pd.merge(ratings, anime_genre, on='anime_id', how='inner')
     df_grouped = df_agg.groupby('user_id')[genres].agg(lambda x: get_mean_genre(df_agg, x))
-    mean_rating = df_agg[genres].mean()
-    # df_grouped[genres].fillna(mean_rating, inplace=True)
+    mean_rating = df_grouped[genres].mean()
     df_grouped[genres] = df_grouped[genres].fillna(mean_rating)
 
     if is_save:
@@ -115,7 +114,8 @@ def read_prepare():
 
     anime_clean = pd.read_csv(DATA / 'anime_clean.csv', index_col='anime_id')
     anime_genre = pd.read_csv(DATA / 'anime_genre.csv', index_col='anime_id')
-    return anime_clean, anime_genre, kmeans, scaler
+    anime_train = pd.read_csv(DATA / 'anime_train.csv', index_col='user_id')
+    return anime_clean, anime_genre, anime_train, kmeans, scaler
 
 def get_best_anime(cluster: np.ndarray, anime: pd.DataFrame, genres: List[str], top_k: int = 10, combo:int = 4):
     top_genres_ind = np.argsort(cluster)[-top_k:]
@@ -125,19 +125,5 @@ def get_best_anime(cluster: np.ndarray, anime: pd.DataFrame, genres: List[str], 
         combo_anime += anime[g]
     result_anime = anime[combo_anime >= combo]
     if result_anime.shape[0]:
-        return result_anime['anime_id'].unique()
+        return result_anime.index
     return get_best_anime(cluster, anime, genres, top_k + 1, combo - 1)
-
-def recomendate(ratings: np.ndarray, hist: np.ndarray, n_recs: int = 5):
-    with open(WEIGHTS / 'kmeans.pkl', mode='rb') as f:
-        kmeans = pickle.load(f)
-    with open(WEIGHTS / 'scaler.pkl', mode='rb') as f:
-        scaler = pickle.load(f)
-
-    anime = pd.read_csv(DATA / 'anime_clean.csv')
-    anime_genre = pd.read_csv(DATA / 'anime_genre.csv')
-
-    genres = list(anime_genre.columns)
-    ratings = scaler.transform(ratings)
-    label = kmeans.predict(ratings)[0]
-    cluster = kmeans.cluster_centers_[label]
