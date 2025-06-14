@@ -80,7 +80,10 @@ def agg_anime(is_save: bool = True) -> pd.DataFrame:
 
     df_agg = pd.merge(ratings, anime_genre, on='anime_id', how='inner')
     df_grouped = df_agg.groupby('user_id')[genres].agg(lambda x: get_mean_genre(df_agg, x))
-    df_grouped.fillna(-1, inplace=True)
+    mean_rating = df_agg[genres].mean()
+    # df_grouped[genres].fillna(mean_rating, inplace=True)
+    df_grouped[genres] = df_grouped[genres].fillna(mean_rating)
+
     if is_save:
         df_grouped.to_csv(DATA / 'anime_train.csv')
         anime_genre.to_csv(DATA / 'anime_genre.csv')

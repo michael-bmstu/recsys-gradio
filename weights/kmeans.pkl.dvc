@@ -1,5 +1,5 @@
 outs:
-- md5: 3d864dadc894d94dd8a215aaa71e5d92
+- md5: 402b2f90f88f978962bf9b5e62bb3f6b
   size: 42037
   hash: md5
   path: kmeans.pkl
