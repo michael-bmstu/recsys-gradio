@@ -1,8 +1,15 @@
 stages:
   preprocess:
-    cmd: data/rating.csv -p seed -o data/rating_clean, data/anime_clean.csv, 
-      data/anime_genre.csv, data/anime_train.csv, weigts/kmeans.pkl, 
-      weights/scaler.pkl 
-      C:/Users/Михаил/Documents/venvs/gradio/Scripts/python.exe preprocess.py
+    cmd: C:/Users/Михаил/Documents/venvs/gradio/Scripts/python.exe preprocess.py
     deps:
-    - data/anime.csv,
+    - data/anime.csv
+    - data/rating.csv
+    params:
+    - seed
+    outs:
+    - data/anime_clean.csv
+    - data/anime_genre.csv
+    - data/anime_train.csv
+    - data/rating_clean.csv
+    - weights/kmeans.pkl
+    - weights/scaler.pkl

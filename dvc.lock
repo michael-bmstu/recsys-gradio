@@ -1,0 +1,41 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: C:/Users/Михаил/Documents/venvs/gradio/Scripts/python.exe preprocess.py
+    deps:
+    - path: data/anime.csv
+      hash: md5
+      md5: f460766db19c648cb8c6886f905ba8f6
+      size: 936463
+    - path: data/rating.csv
+      hash: md5
+      md5: a58231fcc4e38cc91c3f53da7ec0c4b4
+      size: 111404899
+    params:
+      params.yaml:
+        seed: 765432
+    outs:
+    - path: data/anime_clean.csv
+      hash: md5
+      md5: f5f13ce8a77e8b2c8d647d3616f197f4
+      size: 885595
+    - path: data/anime_genre.csv
+      hash: md5
+      md5: 9b8a5aa91ba4ea779b50684f61820e1a
+      size: 1077454
+    - path: data/anime_train.csv
+      hash: md5
+      md5: 0be0d6a3c85149263d4c4eea08bc349e
+      size: 5509998
+    - path: data/rating_clean.csv
+      hash: md5
+      md5: 81714dd4ff62fd66dce6af35ff5668b0
+      size: 59471355
+    - path: weights/kmeans.pkl
+      hash: md5
+      md5: b081a1c7560ab433c72137fc0ea1930d
+      size: 42037
+    - path: weights/scaler.pkl
+      hash: md5
+      md5: 370a318963ed62e032b3c755b2078c89
+      size: 2730
