@@ -32,5 +32,8 @@ fastapi run main.py --host localhost --port 8000
 ```
 Open your web browser and go to `http://localhost:8000`
 
-### Docker container
-/.../
+### Docker container (build)
+```
+docker build -t rec-sys .
+docker run -d -p 8000:8000 rec-sys
+```

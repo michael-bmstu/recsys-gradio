@@ -4,3 +4,5 @@ __pycache__
 .gitignore
 .dvc
 .dvcignore
+README.md
+dvc*
