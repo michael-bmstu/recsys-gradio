@@ -2,3 +2,4 @@ __pycache__
 *.log
 /.gradio
 test.ipynb
+app_venv

@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   preprocess:
-    cmd: C:/Users/Михаил/Documents/venvs/gradio/Scripts/python.exe preprocess.py
+    cmd: app_venv\Scripts\python.exe preprocess.py
     deps:
     - path: data/anime.csv
       hash: md5
@@ -25,7 +25,7 @@ stages:
       size: 1077454
     - path: data/anime_train.csv
       hash: md5
-      md5: 0be0d6a3c85149263d4c4eea08bc349e
+      md5: ed28f61b493b63e1b9187bf6e8604df1
       size: 5509998
     - path: data/rating_clean.csv
       hash: md5
@@ -33,9 +33,9 @@ stages:
       size: 59471355
     - path: weights/kmeans.pkl
       hash: md5
-      md5: b081a1c7560ab433c72137fc0ea1930d
+      md5: c0171c5c8e703b7dd5dc5eb22a87198c
       size: 42037
     - path: weights/scaler.pkl
       hash: md5
-      md5: 370a318963ed62e032b3c755b2078c89
+      md5: 3604906b756941e06f5c16b0876eb0e9
       size: 2730

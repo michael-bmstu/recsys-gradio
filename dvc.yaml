@@ -1,6 +1,6 @@
 stages:
   preprocess:
-    cmd: C:/Users/Михаил/Documents/venvs/gradio/Scripts/python.exe preprocess.py
+    cmd: app_venv\Scripts\python.exe preprocess.py
     deps:
     - data/anime.csv
     - data/rating.csv
