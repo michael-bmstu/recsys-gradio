@@ -37,3 +37,34 @@ Open your web browser and go to `http://localhost:8000`
 docker build -t rec-sys .
 docker run -d -p 8000:8000 rec-sys
 ```
+
+### Docker compose
+///
+
+## Main features
+
+### 1. Distribution of genres by rating categories
+
+Depending on the category, the genre will be assigned a rating from 1 to 10:
+- good = 10
+- normal = 6
+- bad = 2
+
+![](img/inp.jpg)
+
+The more genres you distribute, the more accurate the recommendation will be. Total genres 43
+
+### 2. Viewing history
+
+Using search you can add anime to your viewing history and they will not be recommended.
+
+![](img/search.jpg)
+
+### 3. Slider for selecting the number of recommendations (from 1 to 15)
+
+The number selected represents the number of anime that will be recommended.
+
+### The result of the program's work
+The result is a table that presents anime titles in descending order of rating.
+
+![](img/res.jpg)

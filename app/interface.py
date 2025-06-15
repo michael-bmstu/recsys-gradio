@@ -61,7 +61,7 @@ def recomend(r1, r2, r3, hist, slider):
     anime_id = utils.get_best_anime(
         cluster, anime_genre[~anime_genre.index.isin(hist_id)], genres
         )
-    anime_top = anime_clean.loc[anime_id].iloc[:top_n]
+    anime_top = anime_clean.loc[anime_id].sort_values(by='rating', ascending=False).iloc[:top_n]
     logger.info('the recommendation is ready')
     recs = anime_top[['name', 'rating']].to_html(index=False)
     text = '## The best anime for you'
