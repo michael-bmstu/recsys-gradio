@@ -27,18 +27,20 @@ For correct operation it is necessary to install data from kaggle by the [link](
 python -m venv app_venv
 source app_venv/bin/activate
 pip install --no-cache-dir -U -r requirements.txt
-fastapi run main.py --host localhost --port 8000
+python3 main.py
 ```
-Open your web browser and go to `http://localhost:8000`
+Open your web browser and go to `http://0.0.0.0:8000/`
 
 ### Docker container (build)
 ```
-docker build -t rec-sys .
-docker run -d -p 8000:8000 rec-sys
+sudo docker build -t rec-sys .
+sudo docker run -p 8000:7860 rec-sys
 ```
 
 ### Docker compose
-///
+```
+sudo docker compose up --build
+```
 
 ## Main features
 
