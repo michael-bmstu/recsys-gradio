@@ -22,7 +22,7 @@ Here are some options to run on your machine.
 For correct operation it is necessary to install data from kaggle by the [link](https://www.kaggle.com/datasets/CooperUnion/anime-recommendations-database)
 (anime.csv, rating.csv).
 
-### Manual launch using commands in the terminal (windows cmd)
+### Manual launch using commands in the terminal (ubuntu 24.02)
 ```
 python -m venv app_venv
 source app_venv/bin/activate
