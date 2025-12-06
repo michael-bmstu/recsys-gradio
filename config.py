@@ -1,0 +1,5 @@
+params = dict(
+  seed = 765432,
+  data_root = './data',
+  weight_root = './weights',
+)

@@ -8,6 +8,6 @@ RUN pip install --no-cache-dir --upgrade -r app/requirements.txt
 
 COPY . /app
 
-EXPOSE 8000
+EXPOSE 7860
 
-CMD ["fastapi", "run", "main.py", "--host", "localhost", "--port", "8000"]
+CMD ["python3", "main.py",]

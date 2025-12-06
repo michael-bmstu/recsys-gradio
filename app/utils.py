@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import dvc.api
+from config import params
 from pathlib import Path
 from scipy.special import erfc
 from itertools import chain
@@ -10,7 +10,6 @@ import pickle
 from typing import Any, List, Callable, Optional
 import os
 
-params = dvc.api.params_show()
 SEED = params['seed']
 DATA = Path(params['data_root'])
 WEIGHTS = Path(params['weight_root'])

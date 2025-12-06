@@ -1,5 +1,5 @@
-dvc
-fastapi[standard]
 gradio
+numpy
+pandas
 scipy
 scikit-learn

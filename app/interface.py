@@ -77,7 +77,7 @@ def create_interface():
         r2.change(fn=dynamic_change, inputs=[r1, r2, r3], outputs=[r1, r2, r3])
         r3.change(fn=dynamic_change, inputs=[r1, r2, r3], outputs=[r1, r2, r3])
 
-        hist = gr.Dropdown(choices=list(anime_clean['name']), label='View history', multiselect=True)
+        hist = gr.Dropdown(choices=list(anime_clean['name']), label='View history', multiselect=True, interactive=True)
 
         slider = gr.Slider(minimum=1, maximum=15, value=5, step=1, label='Select count of recomendations')
 

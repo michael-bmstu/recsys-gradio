@@ -25,9 +25,8 @@ For correct operation it is necessary to install data from kaggle by the [link](
 ### Manual launch using commands in the terminal (windows cmd)
 ```
 python -m venv app_venv
-app_venv\Scripts\activate
+source app_venv/bin/activate
 pip install --no-cache-dir -r requirements.txt
-dvc repro
 fastapi run main.py --host localhost --port 8000
 ```
 Open your web browser and go to `http://localhost:8000`
