@@ -89,7 +89,7 @@ def agg_anime(is_save: bool = True) -> pd.DataFrame:
 
 def fit_model(df_train: pd.DataFrame, is_save: bool = True):
     scaler = MinMaxScaler()
-    df_gr_scaled = scaler.fit_transform(df_train)
+    df_gr_scaled = scaler.fit_transform(df_train.to_numpy())
     clustering = KMeans(n_clusters=4, random_state=SEED)
     kmeans = clustering.fit(df_gr_scaled)
 

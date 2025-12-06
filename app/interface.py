@@ -17,8 +17,8 @@ except:
     logger.info('data read successfully')
 
 genres = list(anime_genre.columns)
-mean_rating = anime_train[genres].mean()
-genres = list(mean_rating.sort_values(ascending=False).index)
+mean_rating = anime_train[genres].mean().sort_values(ascending=False)
+genres = list(mean_rating.index)
 anime_clean = anime_clean.sort_values(by='rating', ascending=False)
 
 def dynamic_change(selected_r1, selected_r2, selected_r3):
@@ -31,7 +31,7 @@ def dynamic_change(selected_r1, selected_r2, selected_r3):
     new_r2_choices = [genre for genre in genres if genre not in selected_genres or genre in selected_r2]
     new_r3_choices = [genre for genre in genres if genre not in selected_genres or genre in selected_r3]
 
-    logger.info('genre is rated')
+    logger.debug('genre is rated')
     return gr.update(choices=new_r1_choices), gr.update(choices=new_r2_choices), gr.update(choices=new_r3_choices)
 
 def recomend(r1, r2, r3, hist, slider):
@@ -77,9 +77,10 @@ def create_interface():
         r2.change(fn=dynamic_change, inputs=[r1, r2, r3], outputs=[r1, r2, r3])
         r3.change(fn=dynamic_change, inputs=[r1, r2, r3], outputs=[r1, r2, r3])
 
-        hist = gr.Dropdown(choices=list(anime_clean['name']), label='View history', multiselect=True, interactive=True)
-
+        hist = gr.Dropdown(choices=list(anime_clean['name'])[::70], label='View history', 
+                           multiselect=True, interactive=True,)
         slider = gr.Slider(minimum=1, maximum=15, value=5, step=1, label='Select count of recomendations')
+        hist.select(lambda : logger.debug('history cliked!'))
 
         btn = gr.Button('recommend')
         label = gr.Markdown()
